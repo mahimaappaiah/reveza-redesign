@@ -2256,3 +2256,10 @@ footer {
     gap: 12px;
   }
 }
+
+/* ─── SUBPAGE LAYOUT UTILITY ─── */
+.subpage-content {
+  margin-top: 72px; /* Offset for fixed navigation bar */
+  min-height: calc(100vh - 72px - 220px); /* Fill viewport minus nav and footer height */
+}
+

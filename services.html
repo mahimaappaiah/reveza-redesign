@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services — Reveza Technologies</title>
+  <meta name="description" content="Reveza Technologies modernizes core ERP and business systems, weaving in the AI, data, and engagement layers that make them learn, adapt, and respond in real time.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="custom-cursor-dot" id="cursor-dot"></div>
+<div class="custom-cursor-circle" id="cursor-circle"></div>
+
+<!-- BACKGROUND DECOR BLOBS -->
+<div class="decor-blob blob-1"></div>
+<div class="decor-blob blob-2"></div>
+<div class="decor-blob blob-3"></div>
+
+<!-- NAVIGATION BAR -->
+<nav id="navbar">
+  <div class="logo-container">
+    <div class="logo-dot"></div>
+    <a href="index.html" class="nav-logo">Reveza</a>
+  </div>
+  
+  <ul class="nav-links" id="nav-links">
+    <li class="nav-item">
+      <a href="thesis.html" class="nav-link">Thesis</a>
+    </li>
+    <li class="nav-item">
+      <a href="capabilities.html" class="nav-link">
+        Capabilities 
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </a>
+      <div class="dropdown-menu">
+        <a href="capabilities.html#tilt-p1" class="dropdown-item">
+          <span class="dropdown-title">Digital Core &amp; ERP</span>
+          <span class="dropdown-desc">Process re-engineering &amp; modern rollouts</span>
+        </a>
+        <a href="capabilities.html#tilt-p2" class="dropdown-item">
+          <span class="dropdown-title">Applied AI &amp; Agents</span>
+          <span class="dropdown-desc">Decisioning and agentic workflows</span>
+        </a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="cases.html" class="nav-link">Cases</a>
+    </li>
+    <li class="nav-item">
+      <a href="services.html" class="nav-link active">
+        Services
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </a>
+      <div class="dropdown-menu">
+        <a href="services.html#tilt-svc1" class="dropdown-item">
+          <span class="dropdown-title">SAP Modernisation</span>
+          <span class="dropdown-desc">S/4HANA migration &amp; BTP development</span>
+        </a>
+        <a href="services.html#tilt-svc3" class="dropdown-item">
+          <span class="dropdown-title">Digital Commerce</span>
+          <span class="dropdown-desc">Omnichannel architecture &amp; retail tech</span>
+        </a>
+        <a href="services.html#tilt-svc4" class="dropdown-item">
+          <span class="dropdown-title">Cloud &amp; Infrastructure</span>
+          <span class="dropdown-desc">Strategic hybrid roadmaps &amp; SRE</span>
+        </a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="industries.html" class="nav-link">Industries</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+    <li class="nav-actions">
+      <a href="contact.html" class="nav-cta">Start a project →</a>
+    </li>
+  </ul>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="subpage-content">
+  <!-- SERVICES SECTION -->
+  <section class="section" id="services">
+    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+      <div class="section-tag">Our Services</div>
+      <h2 class="section-title">Six lines. One dedicated team.</h2>
+      <p class="section-desc" style="margin: 0 auto;">We support your technology architecture lifecycle from initial assessment to ongoing support and feature releases.</p>
+    </div>
+    
+    <div class="svc-grid">
+      <!-- Svc 1 -->
+      <div class="svc-card reveal" id="tilt-svc1">
+        <div class="svc-header">
+          <div class="svc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <span class="svc-num">01</span>
+        </div>
+        <h3>ERP Modernisation &amp; SAP</h3>
+        <p class="svc-desc">Migrating legacy operational databases to SAP S/4HANA cloud systems. Specialized blueprints for retail, logistics, manufacturing, and financials.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">S/4HANA</span>
+          <span class="svc-tag">SAP BTP</span>
+          <span class="svc-tag">Grow with SAP</span>
+          <span class="svc-tag">AMS support</span>
+        </div>
+      </div>
+      
+      <!-- Svc 2 -->
+      <div class="svc-card reveal rd1" id="tilt-svc2">
+        <div class="svc-header">
+          <div class="svc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 7.54 16.59c-.24.29-.68.32-.93.04l-.24-.26c-.24-.26-.22-.68.04-.92A8 8 0 1 0 7.59 17.5c.26.24.28.66.04.92l-.24.26c-.25.28-.69.25-.93-.04A10 10 0 0 1 12 2Z"/></svg>
+          </div>
+          <span class="svc-num">02</span>
+        </div>
+        <h3>AI &amp; Intelligent Automation</h3>
+        <p class="svc-desc">Deploying document automation pipelines, reasoning chains, and agentic workflows designed to integrate directly into existing legacy databases.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Generative AI</span>
+          <span class="svc-tag">Process Automation</span>
+          <span class="svc-tag">RAG Infrastructure</span>
+        </div>
+      </div>
+      
+      <!-- Svc 3 -->
+      <div class="svc-card reveal rd2" id="tilt-svc3">
+        <div class="svc-header">
+          <div class="svc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <span class="svc-num">03</span>
+        </div>
+        <h3>Digital Commerce &amp; Retail Tech</h3>
+        <p class="svc-desc">Structuring API commerce routes, omni-channel stock allocation programs, and checkouts. Developed across retail networks globally.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Omnichannel</span>
+          <span class="svc-tag">CPG Integrations</span>
+          <span class="svc-tag">SAP CAR</span>
+          <span class="svc-tag">POS Connectors</span>
+        </div>
+      </div>
+      
+      <!-- Svc 4 -->
+      <div class="svc-card reveal" id="tilt-svc4">
+        <div class="svc-header">
+          <div class="svc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <span class="svc-num">04</span>
+        </div>
+        <h3>Cloud &amp; Infrastructure</h3>
+        <p class="svc-desc">blueprinting hybrid networks and secure data lanes. Optimization matrices matching computing demand against server performance requirements.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">AWS</span>
+          <span class="svc-tag">Azure</span>
+          <span class="svc-tag">SAP BTP</span>
+          <span class="svc-tag">Telemetry Setup</span>
+        </div>
+      </div>
+      
+      <!-- Svc 5 -->
+      <div class="svc-card reveal rd1" id="tilt-svc5">
+        <div class="svc-header">
+          <div class="svc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          </div>
+          <span class="svc-num">05</span>
+        </div>
+        <h3>Data &amp; Analytics Enablement</h3>
+        <p class="svc-desc">Consolidating data sources into queryable data lakehouses. Implementing validation scripts, cleaning pipelines, and structured analytics views.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">SAP Analytics</span>
+          <span class="svc-tag">Lakehouses</span>
+          <span class="svc-tag">BI Dashboards</span>
+          <span class="svc-tag">Governance</span>
+        </div>
+      </div>
+      
+      <!-- Svc 6 -->
+      <div class="svc-card reveal rd2" id="tilt-svc6">
+        <div class="svc-header">
+          <div class="svc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          </div>
+          <span class="svc-num">06</span>
+        </div>
+        <h3>Transformation PMO</h3>
+        <p class="svc-desc">Dedicated migration tracking, program risk auditing, training programs, and cutover scheduling to guarantee successful hangovers.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">PMO Governance</span>
+          <span class="svc-tag">Risk Management</span>
+          <span class="svc-tag">SOP Training</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENT MODELS SECTION -->
+  <section class="section engage-section" id="engage" style="border-bottom: none;">
+    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+      <div class="section-tag">How We Work</div>
+      <h2 class="section-title">Three ways to engage with us</h2>
+      <p class="section-desc" style="margin: 0 auto;">Select the engagement structure that aligns with your timeline, budget, and internal technology expertise.</p>
+    </div>
+    
+    <div class="engage-grid">
+      <!-- Model 1 -->
+      <div class="engage-card reveal">
+        <span class="engage-num">/01 DIAGNOSTICS</span>
+        <h3>Transformation Sprint</h3>
+        <p>A focused 4–6 week evaluation mapping your existing process dependencies, verifying cloud migration paths, and outlining a structured target architecture map.</p>
+        <ul class="engage-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            System audits and dependencies mapping
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            AI feasibility design plans
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Build-versus-buy evaluations
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Costed implementation roadmap
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Model 2 -->
+      <div class="engage-card reveal rd1">
+        <span class="engage-num">/02 DEVELOPMENT</span>
+        <h3>Outcome-Based Build</h3>
+        <p>Multi-quarter system engineering delivered by dedicated senior teams. Co-located product leads, structured integration steps, and clear roadmap execution plans.</p>
+        <ul class="engage-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Full-stack engineering &amp; database design
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            applied AI pipeline integrations
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Change planning and validation scripts
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Measurable performance outcomes SLA
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Model 3 -->
+      <div class="engage-card reveal rd2">
+        <span class="engage-num">/03 OPTIMIZATION</span>
+        <h3>Run &amp; Evolve</h3>
+        <p>Ongoing optimization, system scaling, and database maintenance exceeding traditional ticket metrics. Continuous security patches and database telemetry updates.</p>
+        <ul class="engage-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            L1–L4 ongoing engineering support
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Telemetry checking and cloud cost analysis
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Regular process updates and patches
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Model efficiency reviews and updates
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="logo-container">
+      <div class="logo-dot"></div>
+      <a href="index.html" class="nav-logo">Reveza</a>
+    </div>
+    <ul class="footer-links">
+      <li><a href="thesis.html">Thesis</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="index.html#journey">Methodology</a></li>
+      <li><a href="cases.html">Cases</a></li>
+      <li><a href="services.html">Services</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Reveza Technologies. All rights reserved.</span>
+    <span>Engineered with intelligence. SAP Partner Ecosystem.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

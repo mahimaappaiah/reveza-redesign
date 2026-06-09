@@ -79,33 +79,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── NAVBAR SCROLL EFFECT ─── */
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  }
 
   /* ─── MOBILE MENU TOGGLE ─── */
   const mobileToggle = document.getElementById('mobile-toggle');
   const navLinks = document.getElementById('nav-links');
 
-  mobileToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    const spans = mobileToggle.querySelectorAll('span');
-    spans.forEach(span => span.classList.toggle('active'));
-    
-    if (navLinks.classList.contains('open')) {
-      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translate(7px, -8px)';
-    } else {
-      spans[0].style.transform = 'none';
-      spans[1].style.opacity = '1';
-      spans[2].style.transform = 'none';
-    }
-  });
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const spans = mobileToggle.querySelectorAll('span');
+      spans.forEach(span => span.classList.toggle('active'));
+      
+      if (navLinks.classList.contains('open')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -8px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+
+    // Close mobile menu when a page link is clicked
+    const pageLinks = document.querySelectorAll('.nav-links a:not(.nav-link)');
+    pageLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        const spans = mobileToggle.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      });
+    });
+  }
 
   // Handle nested dropdowns on mobile click
   const navItemsWithDropdown = document.querySelectorAll('.nav-item');
@@ -113,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const link = item.querySelector('.nav-link');
     const dropdown = item.querySelector('.dropdown-menu');
     
-    if (dropdown) {
+    if (dropdown && link) {
       link.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
           e.preventDefault(); 
@@ -123,88 +139,82 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Close mobile menu when a page link is clicked
-  const pageLinks = document.querySelectorAll('.nav-links a:not(.nav-link)');
-  pageLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      const spans = mobileToggle.querySelectorAll('span');
-      spans[0].style.transform = 'none';
-      spans[1].style.opacity = '1';
-      spans[2].style.transform = 'none';
-    });
-  });
-
   /* ─── HERO INTERACTIVE METRICS SLIDER ─── */
   const tabButtons = document.querySelectorAll('.hero-tab-btn');
   const slides = document.querySelectorAll('.hero-slide');
 
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetSlideIndex = button.getAttribute('data-slide');
-      
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+  if (tabButtons.length > 0) {
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetSlideIndex = button.getAttribute('data-slide');
+        
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
-      slides.forEach(slide => {
-        slide.classList.remove('active');
-        if (slide.id === `slide-${targetSlideIndex}`) {
-          slide.classList.add('active');
-        }
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+          if (slide.id === `slide-${targetSlideIndex}`) {
+            slide.classList.add('active');
+          }
+        });
       });
     });
-  });
 
-  // Automatic hero slider cycle (7 seconds)
-  let heroCycleInterval = setInterval(() => {
-    const activeTab = document.querySelector('.hero-tab-btn.active');
-    let nextIndex = parseInt(activeTab.getAttribute('data-slide')) + 1;
-    if (nextIndex >= tabButtons.length) nextIndex = 0;
-    tabButtons[nextIndex].click();
-  }, 7000);
+    // Automatic hero slider cycle (7 seconds)
+    let heroCycleInterval = setInterval(() => {
+      const activeTab = document.querySelector('.hero-tab-btn.active');
+      if (activeTab) {
+        let nextIndex = parseInt(activeTab.getAttribute('data-slide')) + 1;
+        if (nextIndex >= tabButtons.length) nextIndex = 0;
+        tabButtons[nextIndex].click();
+      }
+    }, 7000);
 
-  tabButtons.forEach(button => {
-    button.addEventListener('mousedown', () => {
-      clearInterval(heroCycleInterval);
+    tabButtons.forEach(button => {
+      button.addEventListener('mousedown', () => {
+        clearInterval(heroCycleInterval);
+      });
     });
-  });
+  }
 
   /* ─── 5-STEP JOURNEY TIMELINE ─── */
   const stepButtons = document.querySelectorAll('.journey-step-btn');
   const stepPanels = document.querySelectorAll('.journey-panel-content');
   const progressLine = document.getElementById('timeline-progress');
 
-  stepButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const stepIndex = parseInt(button.getAttribute('data-step'));
-      
-      stepButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+  if (stepButtons.length > 0 && progressLine) {
+    stepButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const stepIndex = parseInt(button.getAttribute('data-step'));
+        
+        stepButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
-      stepPanels.forEach(panel => {
-        panel.classList.remove('active');
-        if (panel.id === `step-content-${stepIndex}`) {
-          panel.classList.add('active');
+        stepPanels.forEach(panel => {
+          panel.classList.remove('active');
+          if (panel.id === `step-content-${stepIndex}`) {
+            panel.classList.add('active');
+          }
+        });
+
+        const progressPercent = ((stepIndex - 1) / (stepButtons.length - 1)) * 90;
+        if (window.innerWidth <= 768) {
+          progressLine.style.height = `${progressPercent}%`;
+          progressLine.style.width = '2px';
+        } else {
+          progressLine.style.width = `${progressPercent}%`;
+          progressLine.style.height = '2px';
         }
       });
+    });
 
-      const progressPercent = ((stepIndex - 1) / (stepButtons.length - 1)) * 90;
-      if (window.innerWidth <= 768) {
-        progressLine.style.height = `${progressPercent}%`;
-        progressLine.style.width = '2px';
-      } else {
-        progressLine.style.width = `${progressPercent}%`;
-        progressLine.style.height = '2px';
+    window.addEventListener('resize', () => {
+      const activeStep = document.querySelector('.journey-step-btn.active');
+      if (activeStep) {
+        activeStep.click();
       }
     });
-  });
-
-  window.addEventListener('resize', () => {
-    const activeStep = document.querySelector('.journey-step-btn.active');
-    if (activeStep) {
-      activeStep.click();
-    }
-  });
+  }
 
   /* ─── INTERACTIVE STACK DIAGRAM EXPLORER ─── */
   const stackRows = document.querySelectorAll('.stack-row');
@@ -279,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
 
-  if (contactForm) {
+  if (contactForm && formSuccess) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
