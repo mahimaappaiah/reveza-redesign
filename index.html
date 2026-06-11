@@ -21,7 +21,7 @@
 <!-- NAVIGATION BAR -->
 <nav id="navbar">
   <div class="logo-container">
-    <div class="logo-dot"></div>
+    <img src="logo.jpg" alt="Reveza Logo" class="logo-img">
     <a href="index.html" class="nav-logo">Reveza</a>
   </div>
   
@@ -75,6 +75,7 @@
       <a href="contact.html" class="nav-link">Contact</a>
     </li>
     <li class="nav-actions">
+      <a href="#" class="nav-link trigger-signin" style="cursor: pointer;">Sign In</a>
       <a href="contact.html" class="nav-cta">Start a project →</a>
     </li>
   </ul>
@@ -107,59 +108,8 @@
   </div>
 </div>
 
-<!-- HERO SECTION -->
-<section class="hero-section" id="hero">
-  <div class="hero-background-mesh"></div>
-  <div class="hero-grid">
-    <div class="hero-content">
-      <div class="hero-label">
-        <span class="hero-label-dot"></span>
-        Reveza Technologies &nbsp;·&nbsp; Enterprise Transformation Partner
-      </div>
-      <h1>
-        <span class="animated-word" style="animation-delay: 0.1s;">Enterprise</span>
-        <span class="animated-word" style="animation-delay: 0.2s;">systems.</span><br>
-        <span class="animated-word" style="animation-delay: 0.3s;">Reimagined</span>
-        <span class="animated-word" style="animation-delay: 0.4s;">with</span>
-        <span class="animated-word gradient-text" style="animation-delay: 0.5s;">intelligence.</span>
-      </h1>
-      <p class="hero-sub">
-        We modernize the <strong>core ERP and operational engines</strong> that run your business—and weave in the <strong>applied AI, real-time data, and customer engagement layers</strong> that make them learn, adapt, and respond. One global delivery model.
-      </p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary">Start a project →</a>
-        <a href="capabilities.html" class="btn btn-secondary">See Capabilities</a>
-      </div>
-    </div>
-    
-    <!-- Hero interactive metric card showcase -->
-    <div class="hero-slider-container">
-      <div class="hero-slider-tabs">
-        <button class="hero-tab-btn active" data-slide="0">Pedigree</button>
-        <button class="hero-tab-btn" data-slide="1">Global Scale</button>
-        <button class="hero-tab-btn" data-slide="2">Core Model</button>
-      </div>
-      
-      <div class="hero-slide active" id="slide-0">
-        <div class="hero-slide-num">40+</div>
-        <div class="hero-slide-title">Combined Pedigree</div>
-        <div class="hero-slide-desc">Years of collective senior engineering and business transformation leadership, ensuring low-risk implementation across critical systems.</div>
-      </div>
-      
-      <div class="hero-slide" id="slide-1">
-        <div class="hero-slide-num">17+</div>
-        <div class="hero-slide-title">Countries Delivered</div>
-        <div class="hero-slide-desc">Proven cross-border engineering delivery capability across complex fiscal compliance regimes, tax networks, and operational cultures.</div>
-      </div>
-      
-      <div class="hero-slide" id="slide-2">
-        <div class="hero-slide-num">2</div>
-        <div class="hero-slide-title">Interwoven Practices</div>
-        <div class="hero-slide-desc">Digital Core Transformation and Applied AI operating under a unified delivery framework, aligning operational capability with predictive intelligence.</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- HERO INTERACTIVE 3D SECTION -->
+<section id="hero-spline-root" style="background-color: #070b15; width: 100%; display: block;"></section>
 
 <!-- 5-STEP JOURNEY SECTION -->
 <section class="section journey-section" id="journey">
@@ -602,7 +552,7 @@
 <footer>
   <div class="footer-top">
     <div class="logo-container">
-      <div class="logo-dot"></div>
+      <img src="logo.jpg" alt="Reveza Logo" class="logo-img">
       <a href="index.html" class="nav-logo">Reveza</a>
     </div>
     <ul class="footer-links">
@@ -620,5 +570,7 @@
 </footer>
 
 <script src="script.js"></script>
+<script type="module" src="/src/modal-loader.tsx"></script>
+<script type="module" src="/src/spline-loader.tsx"></script>
 </body>
 </html>

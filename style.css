@@ -205,6 +205,13 @@ nav.scrolled {
   border-radius: var(--r-full);
 }
 
+.logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
 .nav-logo {
   font-family: var(--font-title);
   font-weight: 800;

@@ -290,17 +290,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const formSuccess = document.getElementById('form-success');
 
   if (contactForm && formSuccess) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
+      const name = document.getElementById('name')?.value || '';
+      const company = document.getElementById('company')?.value || '';
+      const email = document.getElementById('email')?.value || '';
+      const interest = document.getElementById('interest')?.value || '';
+      const message = document.getElementById('message')?.value || '';
+
       contactForm.style.opacity = '0.5';
       contactForm.style.pointerEvents = 'none';
+
+      const supabaseUrl = window.SUPABASE_URL;
+      const supabaseKey = window.SUPABASE_ANON_KEY;
+
+      if (supabaseUrl && supabaseKey && supabaseUrl !== 'YOUR_SUPABASE_URL' && supabaseUrl !== '') {
+        try {
+          const response = await fetch(`${supabaseUrl}/rest/v1/contacts`, {
+            method: 'POST',
+            headers: {
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${supabaseKey}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({ name, company, email, interest, message })
+          });
+          if (!response.ok) throw new Error('Network response was not ok');
+        } catch (err) {
+          console.error('Failed to save submission to Supabase:', err);
+        }
+      } else {
+        console.warn('Supabase credentials not configured yet. Simulating submission success.');
+      }
 
       setTimeout(() => {
         contactForm.style.display = 'none';
         formSuccess.style.display = 'block';
         formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 1200);
+      }, 800);
     });
   }
 
