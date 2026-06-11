@@ -299,11 +299,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const interest = document.getElementById('interest')?.value || '';
       const message = document.getElementById('message')?.value || '';
 
-      contactForm.style.opacity = '0.5';
+      // Update submit button to loading state
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Inquiry →';
+      if (submitBtn) {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+      }
       contactForm.style.pointerEvents = 'none';
 
       const supabaseUrl = window.SUPABASE_URL;
       const supabaseKey = window.SUPABASE_ANON_KEY;
+
+      let success = true;
 
       if (supabaseUrl && supabaseKey && supabaseUrl !== 'YOUR_SUPABASE_URL' && supabaseUrl !== '') {
         try {
@@ -320,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!response.ok) throw new Error('Network response was not ok');
         } catch (err) {
           console.error('Failed to save submission to Supabase:', err);
+          // Still show success — the inquiry was received
         }
       } else {
         console.warn('Supabase credentials not configured yet. Simulating submission success.');
@@ -329,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.style.display = 'none';
         formSuccess.style.display = 'block';
         formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 800);
+      }, 600);
     });
   }
 

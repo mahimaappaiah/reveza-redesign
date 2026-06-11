@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import LoginPage from '../components/ui/gaming-login';
+import { supabase } from '../lib/supabaseClient';
 import '../index.css';
 
 // Expose Supabase credentials to static vanilla scripts
@@ -20,7 +21,7 @@ const SigninModal: React.FC<SigninModalProps> = ({ isOpen, onClose, onLoginSucce
 
   return (
     <div 
-      className="fixed z-[99999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fadeIn"
+      className="fixed z-[99999] flex items-center justify-center p-4 backdrop-blur-md animate-fadeIn"
       style={{
         position: 'fixed',
         top: 0,
@@ -33,7 +34,8 @@ const SigninModal: React.FC<SigninModalProps> = ({ isOpen, onClose, onLoginSucce
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        background: 'rgba(0,0,0,0.7)'
       }}
     >
       {/* Click outside to close */}
@@ -48,8 +50,13 @@ const SigninModal: React.FC<SigninModalProps> = ({ isOpen, onClose, onLoginSucce
         {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 z-50 text-xl font-bold hover:bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-          style={{ cursor: 'pointer', border: 'none' }}
+          className="absolute top-4 right-4 z-50 text-xl font-bold w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+          style={{ 
+            cursor: 'pointer', 
+            border: 'none', 
+            background: 'rgba(255,255,255,0.1)', 
+            color: 'rgba(255,255,255,0.6)' 
+          }}
           aria-label="Close modal"
         >
           &times;
@@ -66,6 +73,44 @@ const App: React.FC = () => {
     return localStorage.getItem('reveza_authenticated') === 'true';
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Check for existing Supabase session (handles OAuth redirect callback)
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          localStorage.setItem('reveza_authenticated', 'true');
+          setIsAuthenticated(true);
+        }
+      } catch (err) {
+        // Supabase not configured — ignore
+      } finally {
+        setIsCheckingAuth(false);
+      }
+    };
+    checkSession();
+
+    // Listen for auth state changes (e.g., OAuth redirect completing)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        localStorage.setItem('reveza_authenticated', 'true');
+        setIsAuthenticated(true);
+        // Release scroll & background
+        document.body.style.overflow = '';
+        document.body.style.backgroundColor = '';
+        document.documentElement.style.backgroundColor = '';
+      } else if (event === 'SIGNED_OUT') {
+        localStorage.setItem('reveza_authenticated', 'false');
+        setIsAuthenticated(false);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     // Sync navbar link text depending on authentication state
@@ -86,6 +131,7 @@ const App: React.FC = () => {
       if (isAuthenticated) {
         // Sign Out action
         localStorage.setItem('reveza_authenticated', 'false');
+        supabase.auth.signOut().catch(() => {}); // Also sign out from Supabase
         setIsAuthenticated(false);
         window.location.reload();
       } else {
@@ -111,52 +157,11 @@ const App: React.FC = () => {
     setIsModalOpen(false);
     // Release scroll block
     document.body.style.overflow = '';
+    document.body.style.backgroundColor = '';
+    document.documentElement.style.backgroundColor = '';
   };
 
-  // If not authenticated, block the screen with full-screen login card and video background
-  if (!isAuthenticated) {
-    document.body.style.overflow = 'hidden';
-    document.body.style.backgroundColor = '#020617';
-    document.documentElement.style.backgroundColor = '#020617';
-
-    return (
-      <div 
-        className="fixed z-[99999] flex items-center justify-center px-4 py-12 font-sans bg-slate-950 select-none"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 99999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxSizing: 'border-box',
-          backgroundColor: '#020617' // slate-950
-        }}
-      >
-        <LoginPage.VideoBackground videoUrl="https://videos.pexels.com/video-files/8128311/8128311-uhd_2560_1440_25fps.mp4" />
-        <div className="relative z-20 w-full max-w-md animate-fadeIn">
-          <LoginPage.LoginForm onSubmit={handleLoginSuccess} onGoogleLogin={handleLoginSuccess} />
-        </div>
-        <footer 
-          className="absolute bottom-4 left-0 right-0 text-center text-white/55 text-xs z-20 font-medium tracking-wide"
-          style={{ width: '100%', pointerEvents: 'none' }}
-        >
-          © 2026 Reveza Technologies. All rights reserved.
-        </footer>
-      </div>
-    );
-  }
-
-  // Release scroll block if authenticated
-  document.body.style.overflow = '';
-  document.body.style.backgroundColor = '';
-  document.documentElement.style.backgroundColor = '';
-
+  // Render the SigninModal on-demand
   return (
     <SigninModal 
       isOpen={isModalOpen} 

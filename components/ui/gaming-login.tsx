@@ -105,7 +105,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onGoogleLogin }) => {
                 onSubmit(email, password, remember);
                 return;
             }
-            setErrorMessage('Supabase connection error. Fallback admin is available.');
+            setErrorMessage('Connection error. Try admin@reveza.com / password');
             setIsSubmitting(false);
         }
     };
@@ -116,8 +116,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onGoogleLogin }) => {
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
+                options: {
+                    redirectTo: window.location.origin + window.location.pathname,
+                },
             });
             if (error) throw error;
+            // If no error, Supabase will redirect to Google — user leaves the page
         } catch (err) {
             // Fall back to simulation on local/dev error
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -158,15 +162,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onGoogleLogin }) => {
             {/* OAuth Loading Overlay */}
             {isOAuthSubmitting && (
                 <div 
-                    className="absolute inset-0 bg-white/95 backdrop-blur-sm z-50 flex flex-col items-center justify-center animate-fadeIn"
-                    style={{ padding: '2rem', textAlign: 'center' }}
+                    className="absolute inset-0 z-50 flex flex-col items-center justify-center"
+                    style={{ 
+                        padding: '2rem', 
+                        textAlign: 'center',
+                        background: 'rgba(2, 6, 23, 0.85)',
+                        backdropFilter: 'blur(8px)'
+                    }}
                 >
                     <div 
-                        className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-4"
+                        className="w-10 h-10 border-4 border-indigo-400 rounded-full animate-spin mb-4"
                         style={{ borderTopColor: 'transparent' }}
                     />
-                    <p className="text-slate-700 text-sm font-semibold">Connecting to {oAuthService}...</p>
-                    <p className="text-slate-400 text-xs mt-1">Please wait while we verify your account.</p>
+                    <p className="text-sm font-semibold" style={{ color: '#fff' }}>Connecting to {oAuthService}...</p>
+                    <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.5)' }}>Please wait while we verify your account.</p>
                 </div>
             )}
 
@@ -191,8 +200,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onGoogleLogin }) => {
             {/* Error Message */}
             {errorMessage && (
                 <div 
-                    className="bg-rose-50 border border-rose-100 rounded-xl text-rose-600 text-xs font-semibold text-center"
-                    style={{ padding: '0.75rem', marginBottom: '1rem', boxSizing: 'border-box' }}
+                    className="rounded-xl text-xs font-semibold text-center"
+                    style={{ 
+                        padding: '0.75rem', 
+                        marginBottom: '1rem', 
+                        boxSizing: 'border-box',
+                        background: 'rgba(225, 29, 72, 0.15)',
+                        border: '1px solid rgba(225, 29, 72, 0.3)',
+                        color: '#fda4af'
+                    }}
                 >
                     {errorMessage}
                 </div>
@@ -220,14 +236,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, onGoogleLogin }) => {
                     />
                     <button
                         type="button"
-                        className="absolute right-4 text-slate-400 hover:text-slate-600 focus:outline-none transition-colors"
+                        className="absolute right-4 focus:outline-none transition-colors"
                         style={{ 
                             top: '1.625rem',
                             transform: 'translateY(-50%)',
                             background: 'transparent',
                             border: 'none',
                             cursor: 'pointer',
-                            zIndex: 15
+                            zIndex: 15,
+                            color: 'rgba(255,255,255,0.4)'
                         }}
                         onClick={() => setShowPassword(!showPassword)}
                         aria-label={showPassword ? "Hide password" : "Show password"}
